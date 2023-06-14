@@ -1,0 +1,42 @@
+line_length: 120
+
+excluded:
+  - .playground
+  - Pods
+
+disabled_rules:
+  - colon
+  - trailing_whitespace
+  - comment_spacing
+
+opt_in_rules:
+  - force_unwrapping
+
+type_name:
+  min_length: 4
+  max_length:
+    warning: 40
+    error: 50
+  excluded: 
+    - iPhone
+    - K
+  allowed_symbols: ["_"]
+
+identifier_name:
+  min_length:
+    error: 3
+  excluded:
+    - vm
+    - vc
+    - dm
+    - id
+    - db
+    - i
+    - e
+    - j
+    - k
+    - l
+    - m
+    - n
+    - g
+    - p
