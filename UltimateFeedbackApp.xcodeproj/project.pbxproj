@@ -85,8 +85,8 @@
 				07D81D002A1994E100DEBBA9 /* UltimateFeedbackApp.swift */,
 				0720A4A02A201B9700905652 /* Views */,
 				0720A4A32A20216A00905652 /* Models */,
-				07D81D102A19975100DEBBA9 /* Main.xcdatamodeld */,
 				07D81D132A1999E500DEBBA9 /* DataController.swift */,
+				07D81D102A19975100DEBBA9 /* Main.xcdatamodeld */,
 				07D81D042A1994E200DEBBA9 /* Assets.xcassets */,
 				07D81D062A1994E200DEBBA9 /* UltimateFeedbackApp.entitlements */,
 				07D81D072A1994E200DEBBA9 /* Preview Content */,
@@ -112,7 +112,6 @@
 				07D81CF92A1994E100DEBBA9 /* Sources */,
 				07D81CFA2A1994E100DEBBA9 /* Frameworks */,
 				07D81CFB2A1994E100DEBBA9 /* Resources */,
-				07D81D0F2A19962E00DEBBA9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -131,7 +130,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					07D81CFC2A1994E100DEBBA9 = {
 						CreatedOnToolsVersion = 14.3;
@@ -167,27 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		07D81D0F2A19962E00DEBBA9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint is not installed.\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07D81CF92A1994E100DEBBA9 /* Sources */ = {
@@ -240,9 +218,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -257,6 +237,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -298,9 +280,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -309,6 +293,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -324,6 +310,7 @@
 				CODE_SIGN_ENTITLEMENTS = UltimateFeedbackApp/UltimateFeedbackApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"UltimateFeedbackApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 47E3RRLYKE;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -363,6 +350,7 @@
 				CODE_SIGN_ENTITLEMENTS = UltimateFeedbackApp/UltimateFeedbackApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"UltimateFeedbackApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 47E3RRLYKE;
 				ENABLE_HARDENED_RUNTIME = YES;

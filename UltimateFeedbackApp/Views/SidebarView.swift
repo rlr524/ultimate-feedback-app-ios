@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SidebarView: View {
     @EnvironmentObject var dataController: DataController
-    // The FedtchRequest prop wrapper ensures SwiftUI updates
+    // The FetchRequest prop wrapper ensures SwiftUI updates
     // the tag list automatically as tags are added or removed
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
     var tagFilters: [Filter] {
@@ -47,9 +47,7 @@ struct SidebarView: View {
     }
 }
 
-struct SidebarView_Previews: PreviewProvider {
-    static var previews: some View {
-        SidebarView()
-            .environmentObject(DataController.preview)
-    }
+#Preview {
+    SidebarView()
+        .environmentObject(DataController.preview)
 }

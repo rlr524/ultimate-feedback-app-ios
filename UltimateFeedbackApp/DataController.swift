@@ -82,7 +82,8 @@ class DataController : ObservableObject {
         if let delete = try? container.viewContext.execute(batchDeleteRequest) as?
             NSBatchDeleteResult {
             let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
-            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [container.viewContext])
+            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes,
+                                                into: [container.viewContext])
         }
     }
     
