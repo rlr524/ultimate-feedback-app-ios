@@ -24,6 +24,23 @@ class DataController : ObservableObject {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
         
+        // Automatically apply to the view context any changes that happen in
+        // the underlying persistent store, so the two stay in sync.
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        
+        // Tell Core Data how to handle merging local and remote data. In this case,
+        // Core Data should compare each property individually and if there
+        // is a conflict, prefer what is currently in memory.
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
+        // Tell Core Data we want to be notified when the store has changed and tell
+        // the system to call the remoteStoreChanged() method when a change happens.
+        container.persistentStoreDescriptions.first?.setOption(true as NSNumber,
+                                                               forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange,
+                                               object: container.persistentStoreCoordinator,
+                                               queue: .main, using: remoteStoreChanged)
+        
         // If in-mem is false, load the underlying DB onto disk or bail out if there's a failure.
         container.loadPersistentStores { storeDescription, error in
             if let error {
@@ -95,5 +112,9 @@ class DataController : ObservableObject {
         delete(request2)
         
         save()
+    }
+    
+    func remoteStoreChanged(_ notification: Notification) {
+        objectWillChange.send()
     }
 }

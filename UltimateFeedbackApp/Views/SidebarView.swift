@@ -35,6 +35,7 @@ struct SidebarView: View {
                         Label(filter.name, systemImage: filter.icon)
                     }
                 }
+                .onDelete(perform: delete)
             }
         }
         .toolbar {
@@ -44,6 +45,13 @@ struct SidebarView: View {
             } label: {
                 Label("ADD SAMPLES", systemImage: "flame")
             }
+        }
+    }
+    
+    func delete(_ offsets: IndexSet) {
+        for offset in offsets {
+            let item = tags[offset]
+            dataController.delete(item)
         }
     }
 }
