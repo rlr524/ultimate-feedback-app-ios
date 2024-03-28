@@ -14,6 +14,7 @@ import CoreData
 class DataController : ObservableObject {
     let container: NSPersistentCloudKitContainer
     @Published var selectedFilter: Filter? = Filter.all
+    @Published var selectedIssue: Issue?
     
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
@@ -116,5 +117,36 @@ class DataController : ObservableObject {
     
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
+    }
+    
+    /**
+     There is one complicated part of IssueView, which is how we handle tags: we need a way
+     to let the user select multiple tags, which is tricky because SwiftUI’s built-in Picker view
+     only supports single selection. This means we need to roll something ourselves, ideally in
+     a way that makes it easy for users to see all their tags up front, and also to add or remove
+     a tag quickly.
+
+     With a little trial and error, the solution I found worked best was to use a Menu view with 
+     items for all the selected and unselected tags. We can already read the selected tags because
+     of the issueTags property we made earlier, but to get the unselected tags we need to add a
+     little code to DataController that will perform a symmetric difference of our issue’s tags
+     and all tags. That’s a fancy way of saying “tell me all issues that aren’t already assigned
+     to this tag,” and it’s one the built-in set operations Swift has.
+
+     Let’s put this into code. We need a method that will:
+
+     - Accept an issue and return an array of all the tags it’s missing.
+     - Internally load all the tags that can exist.
+     - Compute which tags aren’t currently assigned to the issue.
+     - Sort those tags, then send them back.
+     */
+    func missingTags(from issue: Issue) -> [Tag] {
+        let request = Tag.fetchRequest()
+        let allTags = (try? container.viewContext.fetch(request)) ?? []
+        
+        let allTagsSet = Set(allTags)
+        let difference = allTagsSet.symmetricDifference(issue.issueTags)
+        
+        return difference.sorted()
     }
 }
