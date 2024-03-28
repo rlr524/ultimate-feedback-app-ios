@@ -16,6 +16,12 @@ class DataController : ObservableObject {
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedIssue: Issue?
     
+    // This won’t return a value because it’s just calling our save() method, but it might throw an
+    // error because before calling save() we’ll ask the task to sleep for a while. So, we need to
+    // declare this as a Task<Void, Error> to match our needs, and we’ll also make it optional
+    // because it won’t exist at first.
+    private var saveTask: Task<Void, Error>?
+    
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
         
@@ -125,16 +131,16 @@ class DataController : ObservableObject {
      only supports single selection. This means we need to roll something ourselves, ideally in
      a way that makes it easy for users to see all their tags up front, and also to add or remove
      a tag quickly.
-
-     With a little trial and error, the solution I found worked best was to use a Menu view with 
+     
+     With a little trial and error, the solution I found worked best was to use a Menu view with
      items for all the selected and unselected tags. We can already read the selected tags because
      of the issueTags property we made earlier, but to get the unselected tags we need to add a
      little code to DataController that will perform a symmetric difference of our issue’s tags
      and all tags. That’s a fancy way of saying “tell me all issues that aren’t already assigned
      to this tag,” and it’s one the built-in set operations Swift has.
-
+     
      Let’s put this into code. We need a method that will:
-
+     
      - Accept an issue and return an array of all the tags it’s missing.
      - Internally load all the tags that can exist.
      - Compute which tags aren’t currently assigned to the issue.
@@ -148,5 +154,30 @@ class DataController : ObservableObject {
         let difference = allTagsSet.symmetricDifference(issue.issueTags)
         
         return difference.sorted()
+    }
+    
+    /** We need to add a method that will save our changes after a delay. This can be done
+     by creating a new task, making it sleep for a few seconds, then calling save(). Note we
+     cancel the task first if another change comes in, making sure that any existing queued
+     save doesn’t happen.
+     
+     @MainActor tells the task it needs to run its body on the main actor (the main thread),
+     which matters. You see, although Core Data is designed to work well in a multi-threaded
+     environment, it’s something you really need to handle carefully – it’s a really bad idea
+     to pass one managed object between threads, for example, which is exactly the kind of thing
+     that Task makes easy to do by accident.
+     
+     So, until I have a reason to do otherwise – i.e., if I need to implement some slow-running
+     task such as mass-creating data – I prefer to keep all my Core Data work on the main actor.
+     Everything we’ve done elsewhere is already there because it’s triggered by SwiftUI, but this
+     task does need to be explicit.
+     */
+    func queueSave() {
+        saveTask?.cancel()
+        
+        saveTask = Task { @MainActor in
+            try await Task.sleep(for: .seconds(3))
+            save()
+        }
     }
 }
