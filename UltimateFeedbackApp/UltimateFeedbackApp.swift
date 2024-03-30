@@ -15,7 +15,9 @@ struct UltimateFeedbackAppApp: App {
     // seconds for the sleep to finish. This can be done by watching for a scene phase change in
     // our main App struct, first by adding a new property there. It sounds like we’re covering a
     // fairly unlikely scenario, but as Doug Linder once said: “a good programmer is the kind of
-    // person who looks both ways before crossing a one-way street.”
+    // person who looks both ways before crossing a one-way street.” Use the @Environment
+    // property wrapper to pull in the key path of the scenePhase property, which provides the
+    // value of the operational state of a scene.
     @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
