@@ -7,6 +7,15 @@
 
 import CoreData
 
+enum SortType: String {
+    case dateCreated = "creationDate"
+    case dateModified = "modificationDate"
+}
+
+enum Status {
+    case all, open, closed
+}
+
 // Make the DC an observable object so any SwiftUI view can create an instance
 // and watch it as needed. The NSPersistentCloudKitContainer instance loads and
 // manages local data using CoreData and also synchronizes that data with
@@ -17,6 +26,11 @@ class DataController : ObservableObject {
     @Published var selectedIssue: Issue?
     @Published var filterText = ""
     @Published var filterTokens = [Tag]()
+    @Published var filterEnabled = false
+    @Published var filterPriority = -1
+    @Published var filterStatus = Status.all
+    @Published var sortType = SortType.dateCreated
+    @Published var sortNewestFirst = true
     
     // This won’t return a value because it’s just calling our save() method, but it might throw an
     // error because before calling save() we’ll ask the task to sleep for a while. So, we need to
@@ -233,8 +247,24 @@ class DataController : ObservableObject {
 
         }
         
+        if filterEnabled {
+            if filterPriority >= 0 {
+                // %d is the same as a format specifier in Java, it refers to a
+                // placeholder that will be filled by an integer (NSPredicate uses C-style specifiers)
+                let priorityFilter = NSPredicate(format: "priority = %d", filterPriority)
+                predicates.append(priorityFilter)
+            }
+            
+            if filterStatus != .all {
+                let lookForClosed = filterStatus == .closed
+                let statusFilter = NSPredicate(format: "completed = %@", NSNumber(value: lookForClosed))
+                predicates.append(statusFilter)
+            }
+        }
+        
         let request = Issue.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
         
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         return allIssues.sorted()
