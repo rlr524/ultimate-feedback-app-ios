@@ -61,6 +61,10 @@ struct ContentView: View {
                     Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
                         .symbolVariant(dc.filterEnabled ? .fill : .none)
                 }
+                
+                Button(action: dc.newIssue) {
+                    Label("New Issue", systemImage: "square.and.pencil")
+                }
             }
     }
     
