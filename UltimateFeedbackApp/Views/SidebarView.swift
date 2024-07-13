@@ -12,6 +12,7 @@ struct SidebarView: View {
     @State private var tagToRename: Tag?
     @State private var renamingTag = false
     @State private var tagName = ""
+    @State private var showingAwards = false
     // The FetchRequest prop wrapper ensures SwiftUI updates
     // the tag list automatically as tags are added or removed
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
@@ -62,12 +63,19 @@ struct SidebarView: View {
             Button(action: dc.newTag) {
                 Label("Add tag", systemImage: "plus")
             }
+            
+            Button {
+                showingAwards.toggle()
+            } label: {
+                Label("Show awards", systemImage: "rosette")
+            }
         }
         .alert("Rename tag", isPresented: $renamingTag) {
             Button("OK", action: completeRename)
             Button("Cancel", role: .cancel) {}
             TextField("New name", text: $tagName)
         }
+        .sheet(isPresented: $showingAwards, content: AwardsView.init)
     }
     
     func delete(_ offsets: IndexSet) {
