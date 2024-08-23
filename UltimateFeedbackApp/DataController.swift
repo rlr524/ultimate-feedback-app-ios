@@ -244,7 +244,7 @@ class DataController : ObservableObject {
                 let tokenPredicate = NSPredicate(format: "tags CONTAINS %@", filterToken)
                 predicates.append(tokenPredicate)
             }
-
+            
         }
         
         if filterEnabled {
@@ -287,5 +287,37 @@ class DataController : ObservableObject {
         tag.id = UUID()
         tag.name = "New tag"
         save()
+    }
+    
+    func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+        (try? container.viewContext.count(for: fetchRequest)) ?? 0
+    }
+    
+    func hasEarned(award: Award) -> Bool {
+        switch award.criteria {
+        case "issues":
+            // returns true if they added a certain number of issues
+            let fetchRequest = Issue.fetchRequest()
+            let awardCount = count(for: fetchRequest)
+            return awardCount >= award.value
+            
+        case "closed":
+            // returns true if they closed a certain number of issues
+            let fetchRequest = Issue.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "completed = true")
+            let awardCount = count(for: fetchRequest)
+            return awardCount >= award.value
+            
+        case "tags":
+            // returns true if they created a certain number of tags
+            let fetchRequest = Tag.fetchRequest()
+            let awardCount = count(for: fetchRequest)
+            return awardCount >= award.value
+            
+        default:
+            // an unknown award criteria; this should never be allowed
+            //fatalError("Unknown award criteria: \(award.criteria)")
+            return false
+        }
     }
 }
