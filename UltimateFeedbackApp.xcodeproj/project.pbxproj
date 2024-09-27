@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,6 @@
 		07D81D052A1994E200DEBBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D81D042A1994E200DEBBA9 /* Assets.xcassets */; };
 		07D81D092A1994E200DEBBA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D81D082A1994E200DEBBA9 /* Preview Assets.xcassets */; };
 		07D81D122A19975100DEBBA9 /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07D81D102A19975100DEBBA9 /* Main.xcdatamodeld */; };
-		07D81D142A1999E500DEBBA9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D81D132A1999E500DEBBA9 /* DataController.swift */; };
 		D42018CA2C79227300304674 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42018C92C79227300304674 /* Colors.xcassets */; };
 		D48736C52BAE18E100494550 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48736C42BAE18E100494550 /* IssueRow.swift */; };
 		D497FC052BACE0DC00496854 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497FC042BACE0DC00496854 /* Issue-CoreDataHelpers.swift */; };
@@ -40,7 +39,6 @@
 		07D81D062A1994E200DEBBA9 /* UltimateFeedbackApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UltimateFeedbackApp.entitlements; sourceTree = "<group>"; };
 		07D81D082A1994E200DEBBA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		07D81D112A19975100DEBBA9 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
-		07D81D132A1999E500DEBBA9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		07D81D152A19A22300DEBBA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D42018C92C79227300304674 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D48736C42BAE18E100494550 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
@@ -54,6 +52,10 @@
 		D4E1CE442BB4C8DB00FB9266 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
 		D4E1CE462BB4CE9F00FB9266 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D458C6402CA7781100AC148F /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		07D81CFA2A1994E100DEBBA9 /* Frameworks */ = {
@@ -111,10 +113,10 @@
 				07D81D152A19A22300DEBBA9 /* Info.plist */,
 				D4D9EC7E2C430F7300B0F297 /* Awards.json */,
 				07D81D002A1994E100DEBBA9 /* UltimateFeedbackApp.swift */,
-				07D81D132A1999E500DEBBA9 /* DataController.swift */,
-				D497FC082BACE47D00496854 /* Helpers */,
-				0720A4A02A201B9700905652 /* Views */,
 				0720A4A32A20216A00905652 /* Models */,
+				0720A4A02A201B9700905652 /* Views */,
+				D458C6402CA7781100AC148F /* ViewModels */,
+				D497FC082BACE47D00496854 /* Helpers */,
 				07D81D102A19975100DEBBA9 /* Main.xcdatamodeld */,
 				07D81D042A1994E200DEBBA9 /* Assets.xcassets */,
 				D42018C92C79227300304674 /* Colors.xcassets */,
@@ -157,6 +159,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D458C6402CA7781100AC148F /* ViewModels */,
 			);
 			name = UltimateFeedbackApp;
 			productName = UltimateFeedbackApp;
@@ -222,7 +227,6 @@
 				D497FC052BACE0DC00496854 /* Issue-CoreDataHelpers.swift in Sources */,
 				D4D9EC822C4312B200B0F297 /* Bundle-Decodable.swift in Sources */,
 				0720A49F2A201B2100905652 /* DetailView.swift in Sources */,
-				07D81D142A1999E500DEBBA9 /* DataController.swift in Sources */,
 				D4D9EC862C432DF000B0F297 /* AwardsView.swift in Sources */,
 				0720A49D2A201B1000905652 /* SidebarView.swift in Sources */,
 				07D81D032A1994E100DEBBA9 /* ContentView.swift in Sources */,
