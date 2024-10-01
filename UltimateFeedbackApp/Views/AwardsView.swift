@@ -21,7 +21,7 @@ struct AwardsView: View {
             return "Locked"
         }
     }
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {

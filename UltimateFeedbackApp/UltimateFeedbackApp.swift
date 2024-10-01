@@ -19,7 +19,7 @@ struct UltimateFeedbackAppApp: App {
     // property wrapper to pull in the key path of the scenePhase property, which provides the
     // value of the operational state of a scene.
     @Environment(\.scenePhase) var scenePhase
-    
+
     var body: some Scene {
         WindowGroup {
             NavigationSplitView {

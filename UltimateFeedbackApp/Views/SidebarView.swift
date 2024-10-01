@@ -22,7 +22,7 @@ struct SidebarView: View {
         }
     }
     let smartFilters: [Filter] = [.all, .recent]
-    
+
     var body: some View {
         List(selection: $dc.selectedFilter) {
             Section("Smart Filters") {
@@ -48,7 +48,7 @@ struct SidebarView: View {
                 }
                 .onDelete(perform: delete)
             }
-            
+
         }
         .toolbar {
 #if DEBUG
@@ -59,11 +59,11 @@ struct SidebarView: View {
                 Label("ADD SAMPLES", systemImage: "flame")
             }
 #endif
-            
+
             Button(action: dc.newTag) {
                 Label("Add tag", systemImage: "plus")
             }
-            
+
             Button {
                 showingAwards.toggle()
             } label: {
@@ -77,20 +77,20 @@ struct SidebarView: View {
         }
         .sheet(isPresented: $showingAwards, content: AwardsView.init)
     }
-    
+
     func delete(_ offsets: IndexSet) {
         for offset in offsets {
             let item = tags[offset]
             dc.delete(item)
         }
     }
-    
+
     func rename(_ filter: Filter) {
         tagToRename = filter.tag
         tagName = filter.name
         renamingTag = true
     }
-    
+
     func completeRename() {
         tagToRename?.name = tagName
         dc.save()
