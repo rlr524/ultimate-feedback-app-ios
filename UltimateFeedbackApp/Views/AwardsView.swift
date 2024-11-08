@@ -40,6 +40,10 @@ struct AwardsView: View {
                                                  ? Color(award.color)
                                                  : .secondary.opacity(0.5))
                         }
+                        .accessibilityLabel(dc.hasEarned(award: award)
+                                            ? "Unlocked: \(award.name)"
+                                            : "Locked")
+                        .accessibilityHint(award.description)
                     }
                 }
             }

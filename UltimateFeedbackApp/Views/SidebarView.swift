@@ -36,7 +36,7 @@ struct SidebarView: View {
                 ForEach(tagFilters) { filter in
                     NavigationLink(value: filter) {
                         Label(filter.name, systemImage: filter.icon)
-                            .badge(filter.tag?.tagActiveIssues.count ?? 0)
+                            .badge(filter.activeIssuesCount)
                             .contextMenu {
                                 Button {
                                     rename(filter)
@@ -50,6 +50,12 @@ struct SidebarView: View {
                                     Label("Delete", systemImage: "trash")
                                 }
                             }
+                            .accessibilityElement()
+                            .accessibilityLabel(filter.name)
+                            // Using automatic grammar agreement, which is part of the Foundation
+                            // framework, to adjust "issue" to "issues" when the number of
+                            // issues is plural.
+                            .accessibilityHint("^[\(filter.activeIssuesCount) issue](inflect: true)")
                     }
                 }
                 .onDelete(perform: delete)
