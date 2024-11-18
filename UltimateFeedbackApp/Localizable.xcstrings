@@ -1,0 +1,177 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "**Modified:** %@" : {
+
+    },
+    "**Status:** %@" : {
+
+    },
+    "^[%lld issue](inflect: true)" : {
+
+    },
+    "Actions" : {
+
+    },
+    "ADD SAMPLES" : {
+
+    },
+    "Add tag" : {
+
+    },
+    "Add Tags" : {
+
+    },
+    "All" : {
+
+    },
+    "All Issues" : {
+      "extractionState" : "manual"
+    },
+    "Awards" : {
+
+    },
+    "Basic Information" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Close Issue" : {
+
+    },
+    "Closed" : {
+
+    },
+    "CLOSED" : {
+
+    },
+    "Copy Issue Title" : {
+
+    },
+    "Date Created" : {
+
+    },
+    "Date Modified" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Description" : {
+
+    },
+    "Details" : {
+
+    },
+    "Enter the issue description here" : {
+
+    },
+    "Enter the issue title here" : {
+
+    },
+    "Filter" : {
+
+    },
+    "Filter issues, or type # to add tags" : {
+
+    },
+    "Filters" : {
+      "extractionState" : "manual"
+    },
+    "High" : {
+
+    },
+    "High Priority" : {
+
+    },
+    "Issues" : {
+
+    },
+    "Locked" : {
+
+    },
+    "Low" : {
+
+    },
+    "Medium" : {
+
+    },
+    "New issue" : {
+      "comment" : "Create a new issue"
+    },
+    "New Issue" : {
+
+    },
+    "New name" : {
+
+    },
+    "New tag" : {
+      "comment" : "Create a new tag"
+    },
+    "Newest to Oldest" : {
+
+    },
+    "No Issue Selected" : {
+
+    },
+    "OK" : {
+
+    },
+    "Oldest to Newest" : {
+
+    },
+    "Open" : {
+
+    },
+    "Priority" : {
+
+    },
+    "Re-open Issue" : {
+
+    },
+    "Recent Issues" : {
+      "extractionState" : "manual"
+    },
+    "Rename" : {
+
+    },
+    "Rename tag" : {
+
+    },
+    "Show awards" : {
+
+    },
+    "Smart Filters" : {
+
+    },
+    "Sort By" : {
+
+    },
+    "Sort Order" : {
+
+    },
+    "Status" : {
+
+    },
+    "Tags" : {
+
+    },
+    "Title" : {
+
+    },
+    "Turn Filter Off" : {
+
+    },
+    "Turn Filter On" : {
+
+    },
+    "Unlocked: %@" : {
+
+    }
+  },
+  "version" : "1.0"
+}

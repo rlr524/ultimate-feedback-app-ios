@@ -73,8 +73,10 @@ class DataController : ObservableObject {
 
         // Tell Core Data we want to be notified when the store has changed and tell
         // the system to call the remoteStoreChanged() method when a change happens.
-        container.persistentStoreDescriptions.first?.setOption(true as NSNumber,
-                                                               forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        container.persistentStoreDescriptions
+            .first?
+            .setOption(true as NSNumber,
+                       forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange,
                                                object: container.persistentStoreCoordinator,
                                                queue: .main, using: remoteStoreChanged)
@@ -251,21 +253,24 @@ class DataController : ObservableObject {
         if filterEnabled {
             if filterPriority >= 0 {
                 // %d is the same as a format specifier in Java, it refers to a
-                // placeholder that will be filled by an integer (NSPredicate uses C-style specifiers)
+                // placeholder that will be filled by an integer
+                // (NSPredicate uses C-style specifiers)
                 let priorityFilter = NSPredicate(format: "priority = %d", filterPriority)
                 predicates.append(priorityFilter)
             }
 
             if filterStatus != .all {
                 let lookForClosed = filterStatus == .closed
-                let statusFilter = NSPredicate(format: "completed = %@", NSNumber(value: lookForClosed))
+                let statusFilter = NSPredicate(format: "completed = %@",
+                                               NSNumber(value: lookForClosed))
                 predicates.append(statusFilter)
             }
         }
 
         let request = Issue.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
+        request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue,
+                                                    ascending: sortNewestFirst)]
 
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         return allIssues
@@ -273,7 +278,7 @@ class DataController : ObservableObject {
 
     func newIssue() {
         let issue = Issue(context: container.viewContext)
-        issue.title = "New Issue"
+        issue.title = NSLocalizedString("New issue", comment: "Create a new issue")
         issue.creationDate = .now
         issue.priority = 1
         if let tag = selectedFilter?.tag {
@@ -286,7 +291,7 @@ class DataController : ObservableObject {
     func newTag() {
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()
-        tag.name = "New tag"
+        tag.name = NSLocalizedString("New tag", comment: "Create a new tag")
         save()
     }
 
