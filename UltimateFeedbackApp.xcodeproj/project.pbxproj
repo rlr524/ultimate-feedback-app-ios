@@ -27,6 +27,7 @@
 		D4D9EC862C432DF000B0F297 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D9EC852C432DF000B0F297 /* AwardsView.swift */; };
 		D4E1CE452BB4C8DB00FB9266 /* NoIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E1CE442BB4C8DB00FB9266 /* NoIssueView.swift */; };
 		D4E1CE472BB4CE9F00FB9266 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E1CE462BB4CE9F00FB9266 /* IssueView.swift */; };
+		D4E3626F2CEC441D0091F546 /* SidebarViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E3626E2CEC441D0091F546 /* SidebarViewToolbar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		D4D9EC852C432DF000B0F297 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
 		D4E1CE442BB4C8DB00FB9266 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
 		D4E1CE462BB4CE9F00FB9266 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
+		D4E3626E2CEC441D0091F546 /* SidebarViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewToolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -81,6 +83,7 @@
 				D4E1CE442BB4C8DB00FB9266 /* NoIssueView.swift */,
 				D4E1CE462BB4CE9F00FB9266 /* IssueView.swift */,
 				D4D9EC852C432DF000B0F297 /* AwardsView.swift */,
+				D4E3626E2CEC441D0091F546 /* SidebarViewToolbar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,7 +183,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					07D81CFC2A1994E100DEBBA9 = {
 						CreatedOnToolsVersion = 14.3;
@@ -241,6 +244,7 @@
 				D4E1CE472BB4CE9F00FB9266 /* IssueView.swift in Sources */,
 				D4D9EC842C432D2500B0F297 /* Award.swift in Sources */,
 				07D81D012A1994E100DEBBA9 /* UltimateFeedbackApp.swift in Sources */,
+				D4E3626F2CEC441D0091F546 /* SidebarViewToolbar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +268,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -328,6 +333,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

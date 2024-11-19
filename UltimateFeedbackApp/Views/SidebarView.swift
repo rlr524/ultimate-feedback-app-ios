@@ -62,24 +62,7 @@ struct SidebarView: View {
             }
         }
         .toolbar {
-#if DEBUG
-            Button {
-                dc.deleteAll()
-                dc.createSampleData()
-            } label: {
-                Label("ADD SAMPLES", systemImage: "flame")
-            }
-#endif
-
-            Button(action: dc.newTag) {
-                Label("Add tag", systemImage: "plus")
-            }
-
-            Button {
-                showingAwards.toggle()
-            } label: {
-                Label("Show awards", systemImage: "rosette")
-            }
+            SidebarViewToolbar(showingAwards: $showingAwards)
         }
         .alert("Rename tag", isPresented: $renamingTag) {
             Button("OK", action: completeRename)
