@@ -26,37 +26,12 @@ struct SidebarView: View {
     var body: some View {
         List(selection: $dc.selectedFilter) {
             Section("Smart Filters") {
-                ForEach(smartFilters) { filter in
-                    NavigationLink(value: filter) {
-                        Label(LocalizedStringKey(filter.name), systemImage: filter.icon)
-                    }
-                }
+                ForEach(smartFilters, content: SmartFilterRow.init)
             }
+            
             Section("Tags") {
                 ForEach(tagFilters) { filter in
-                    NavigationLink(value: filter) {
-                        Label(filter.name, systemImage: filter.icon)
-                            .badge(filter.activeIssuesCount)
-                            .contextMenu {
-                                Button {
-                                    rename(filter)
-                                } label: {
-                                    Label("Rename", systemImage: "pencil")
-                                }
-
-                                Button(role: .destructive) {
-                                    delete(filter)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
-                            .accessibilityElement()
-                            .accessibilityLabel(filter.name)
-                            // Using automatic grammar agreement, which is part of the Foundation
-                            // framework, to adjust "issue" to "issues" when the number of
-                            // issues is plural.
-                            .accessibilityHint("^[\(filter.activeIssuesCount) issue](inflect: true)")
-                    }
+                    UserFilterRow(filter: filter, rename: rename, delete: delete)
                 }
                 .onDelete(perform: delete)
             }
