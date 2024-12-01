@@ -1,8 +1,8 @@
 # Ultimate Feedback App MultiPlatform - SwiftUI
 
 <p align="center">
-	<img src="https://img.shields.io/badge/iOS-17.0+-blue"
-	<img src="https://img.shields.io/badge/Swift-5.0-green"
+	<img src="https://img.shields.io/badge/iOS-17.0+-blue" />
+	<img src="https://img.shields.io/badge/Swift-5.0-green" />
 </p>
 
 * App ID: ultimate-feedback-app-ios
