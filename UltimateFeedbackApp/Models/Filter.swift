@@ -24,8 +24,9 @@ struct Filter: Identifiable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-    
-    static func == (lhs: Filter, rhs: Filter) -> Bool {
+
+    // swiftlint:disable:next operator_whitespace
+    static func ==(lhs: Filter, rhs: Filter) -> Bool {
         lhs.id == rhs.id
     }
 }

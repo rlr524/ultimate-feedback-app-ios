@@ -20,7 +20,11 @@ enum Status {
 // and watch it as needed. The NSPersistentCloudKitContainer instance loads and
 // manages local data using CoreData and also synchronizes that data with
 // the user's iCloud account so all user devices share the same app data.
+
+/// An environment singleton responsible for managing the Core Data stack, including
+/// counting fetch requests, tracking awards, and dealing with sample data.
 class DataController : ObservableObject {
+    /// The lone CloudKit container used to store all data.
     let container: NSPersistentCloudKitContainer
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedIssue: Issue?
@@ -52,12 +56,18 @@ class DataController : ObservableObject {
 
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
-
+    
+    /// Initialiizes a DataController, either in memory (for temporary uss, such as testing and previewing),
+    /// or in permanent storage (for use in regular app runs).
+    ///
+    /// Defaults to permanent storage.
+    /// - Parameter inMemory: Whether to store this data in temporary memory or not.
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
 
-        // Allow data to be created in-mem; it will disappear when app
-        // closes, but it helps for testing and for previews.
+        // Allow data to be created in-mem; it will disappear when appcloses, but it helps
+        // for testing and for previews. This creates a temporary in-memory database by writing
+        // to /dev/null.
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
@@ -119,7 +129,9 @@ class DataController : ObservableObject {
         dataController.createSampleData()
         return dataController
     }()
-
+    
+    /// Saves the Core Data context if and only if there are changes. This silently ignores any errors
+    /// caused by saving, however this should be fine because all attributes (filter, issue) are optionals.
     func save() {
         saveTask?.cancel()
         if container.viewContext.hasChanges {
@@ -214,7 +226,10 @@ class DataController : ObservableObject {
             save()
         }
     }
-
+    
+    /// Runs a fetch request with various predicates that filter the user's issues based on tag, title and
+    /// content text, search tokens, priority, and completion status.
+    /// - Returns: An array of all matching issues.
     func issuesForSelectedFilter() -> [Issue] {
         let filter = selectedFilter ?? .all
         var predicates = [NSPredicate]()
