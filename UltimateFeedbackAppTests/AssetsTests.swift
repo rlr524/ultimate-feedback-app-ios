@@ -8,7 +8,7 @@
 import XCTest
 @testable import UltimateFeedbackApp
 
-final class AssetsTests: XCTestCase {
+final class AssetsTests: BaseTestCase {
     func testColorsExist() {
         let allColors = ["c_Dark Blue", "c_Dark Gray", "c_Gold", "c_Gray", "c_Green",
                          "c_Light Blue", "c_Midnight", "c_Orange", "c_Pink", "c_Purple",
