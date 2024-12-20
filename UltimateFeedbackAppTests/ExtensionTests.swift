@@ -42,4 +42,46 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(issue.issueCreationDate, testDate,
                        "Changing creation date should also change issueCreationDate")
     }
+
+    func testIssueTagsUnwrap() {
+        let tag = Tag(context: moc)
+        let issue = Issue(context: moc)
+
+        XCTAssertEqual(issue.issueTags.count, 0, "A new issue should have no tags")
+        issue.addToTags(tag)
+
+        XCTAssertEqual(issue.issueTags.count, 1,
+                       "Adding 1 tag to an issue should result in issueTags having count 1")
+    }
+
+    func testIssueTagsList() {
+        let tag = Tag(context: moc)
+        let issue = Issue(context: moc)
+
+        tag.name = "My Tag"
+        issue.addToTags(tag)
+
+        XCTAssertEqual(issue.issueTagsList, "My Tag",
+                       "Adding 1 tag to an issue should make issueTagsList be My Tag.")
+    }
+
+    func testIssueSortingIsStable() {
+        let issue1 = Issue(context: moc)
+        issue1.title = "B Issue"
+        issue1.creationDate = .now
+
+        let issue2 = Issue(context: moc)
+        issue2.title = "B Issue"
+        issue2.creationDate = .now.addingTimeInterval(1)
+
+        let issue3 = Issue(context: moc)
+        issue3.title = "A Issue"
+        issue3.creationDate = .now.addingTimeInterval(100)
+
+        let allIssues = [issue1, issue2, issue3]
+        let sorted = allIssues.sorted()
+
+        XCTAssertEqual([issue3, issue1, issue2], sorted,
+                       "Sorting issue arrays should use name then creation date.")
+    }
 }
