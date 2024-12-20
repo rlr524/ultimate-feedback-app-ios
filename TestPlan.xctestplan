@@ -1,23 +1,18 @@
 {
   "configurations" : [
     {
-      "id" : "4B82E64E-7BAA-4313-860D-958A333B2845",
-      "name" : "Test Scheme Action",
+      "id" : "7B288DCB-D400-4A68-B0CB-9E9A1EBD30B9",
+      "name" : "Configuration 1",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
-    "targetForVariableExpansion" : {
-      "containerPath" : "container:UltimateFeedbackApp.xcodeproj",
-      "identifier" : "07D81CFC2A1994E100DEBBA9",
-      "name" : "UltimateFeedbackApp"
-    }
+    "testTimeoutsEnabled" : true
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:UltimateFeedbackApp.xcodeproj",
         "identifier" : "D41E625B2D07724E0053AD82",
