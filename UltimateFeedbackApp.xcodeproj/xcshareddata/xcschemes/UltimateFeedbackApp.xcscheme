@@ -33,6 +33,9 @@
             reference = "container:TestPlan.xctestplan"
             default = "YES">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:PerformanceTestPlan.xctestplan">
+         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
@@ -43,6 +46,17 @@
                BlueprintIdentifier = "D41E625B2D07724E0053AD82"
                BuildableName = "UltimateFeedbackAppTests.xctest"
                BlueprintName = "UltimateFeedbackAppTests"
+               ReferencedContainer = "container:UltimateFeedbackApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D451A8B82D16526800587DAA"
+               BuildableName = "UltimateFeedbackAppPerformanceTests.xctest"
+               BlueprintName = "UltimateFeedbackAppPerformanceTests"
                ReferencedContainer = "container:UltimateFeedbackApp.xcodeproj">
             </BuildableReference>
          </TestableReference>

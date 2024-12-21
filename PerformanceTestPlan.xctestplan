@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "8A58BDBF-7A6D-4D1C-844E-A23584B93826",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:UltimateFeedbackApp.xcodeproj",
+        "identifier" : "D451A8B82D16526800587DAA",
+        "name" : "UltimateFeedbackAppPerformanceTests"
+      }
+    }
+  ],
+  "version" : 1
+}

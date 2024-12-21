@@ -18,6 +18,7 @@
 		D404727F2CFCD99900C3743C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404727E2CFCD99900C3743C /* DataController.swift */; };
 		D42018CA2C79227300304674 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42018C92C79227300304674 /* Colors.xcassets */; };
 		D43A9F352D1504D7003798E9 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = D43A9F342D1504D7003798E9 /* TestPlan.xctestplan */; };
+		D451A8C32D16528700587DAA /* PerformanceTestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = D451A8C22D16528700587DAA /* PerformanceTestPlan.xctestplan */; };
 		D47C77E32D07867700289658 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = D47C77E22D07867700289658 /* Awards.json */; };
 		D47C77E42D07867700289658 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = D47C77E22D07867700289658 /* Awards.json */; };
 		D48736C52BAE18E100494550 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48736C42BAE18E100494550 /* IssueRow.swift */; };
@@ -46,6 +47,13 @@
 			remoteGlobalIDString = 07D81CFC2A1994E100DEBBA9;
 			remoteInfo = UltimateFeedbackApp;
 		};
+		D451A8BD2D16526900587DAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07D81CF52A1994E100DEBBA9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07D81CFC2A1994E100DEBBA9;
+			remoteInfo = UltimateFeedbackApp;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +72,8 @@
 		D41E625C2D07724E0053AD82 /* UltimateFeedbackAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UltimateFeedbackAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42018C92C79227300304674 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D43A9F342D1504D7003798E9 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		D451A8B92D16526800587DAA /* UltimateFeedbackAppPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UltimateFeedbackAppPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D451A8C22D16528700587DAA /* PerformanceTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PerformanceTestPlan.xctestplan; sourceTree = "<group>"; };
 		D47C77E22D07867700289658 /* Awards.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Awards.json; sourceTree = "<group>"; };
 		D48736C42BAE18E100494550 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
 		D497FC042BACE0DC00496854 /* Issue-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue-CoreDataHelpers.swift"; sourceTree = "<group>"; };
@@ -85,6 +95,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D41E625D2D07724E0053AD82 /* UltimateFeedbackAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UltimateFeedbackAppTests; sourceTree = "<group>"; };
+		D451A8BA2D16526900587DAA /* UltimateFeedbackAppPerformanceTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UltimateFeedbackAppPerformanceTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,15 +113,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D451A8B62D16526800587DAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		07D81CF42A1994E100DEBBA9 = {
 			isa = PBXGroup;
 			children = (
+				D451A8C22D16528700587DAA /* PerformanceTestPlan.xctestplan */,
 				D43A9F342D1504D7003798E9 /* TestPlan.xctestplan */,
 				07D81CFF2A1994E100DEBBA9 /* UltimateFeedbackApp */,
 				D41E625D2D07724E0053AD82 /* UltimateFeedbackAppTests */,
+				D451A8BA2D16526900587DAA /* UltimateFeedbackAppPerformanceTests */,
 				07D81CFE2A1994E100DEBBA9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,6 +140,7 @@
 			children = (
 				07D81CFD2A1994E100DEBBA9 /* UltimateFeedbackApp.app */,
 				D41E625C2D07724E0053AD82 /* UltimateFeedbackAppTests.xctest */,
+				D451A8B92D16526800587DAA /* UltimateFeedbackAppPerformanceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,6 +272,29 @@
 			productReference = D41E625C2D07724E0053AD82 /* UltimateFeedbackAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D451A8B82D16526800587DAA /* UltimateFeedbackAppPerformanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D451A8C12D16526900587DAA /* Build configuration list for PBXNativeTarget "UltimateFeedbackAppPerformanceTests" */;
+			buildPhases = (
+				D451A8B52D16526800587DAA /* Sources */,
+				D451A8B62D16526800587DAA /* Frameworks */,
+				D451A8B72D16526800587DAA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D451A8BE2D16526900587DAA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D451A8BA2D16526900587DAA /* UltimateFeedbackAppPerformanceTests */,
+			);
+			name = UltimateFeedbackAppPerformanceTests;
+			packageProductDependencies = (
+			);
+			productName = UltimateFeedbackAppPerformanceTests;
+			productReference = D451A8B92D16526800587DAA /* UltimateFeedbackAppPerformanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -258,7 +302,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					07D81CFC2A1994E100DEBBA9 = {
@@ -266,6 +310,10 @@
 					};
 					D41E625B2D07724E0053AD82 = {
 						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 07D81CFC2A1994E100DEBBA9;
+					};
+					D451A8B82D16526800587DAA = {
+						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 07D81CFC2A1994E100DEBBA9;
 					};
 				};
@@ -285,6 +333,7 @@
 			targets = (
 				07D81CFC2A1994E100DEBBA9 /* UltimateFeedbackApp */,
 				D41E625B2D07724E0053AD82 /* UltimateFeedbackAppTests */,
+				D451A8B82D16526800587DAA /* UltimateFeedbackAppPerformanceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -307,7 +356,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43A9F352D1504D7003798E9 /* TestPlan.xctestplan in Resources */,
+				D451A8C32D16528700587DAA /* PerformanceTestPlan.xctestplan in Resources */,
 				D47C77E42D07867700289658 /* Awards.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D451A8B72D16526800587DAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +407,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D451A8B52D16526800587DAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -357,6 +421,11 @@
 			isa = PBXTargetDependency;
 			target = 07D81CFC2A1994E100DEBBA9 /* UltimateFeedbackApp */;
 			targetProxy = D41E62602D07724E0053AD82 /* PBXContainerItemProxy */;
+		};
+		D451A8BE2D16526900587DAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07D81CFC2A1994E100DEBBA9 /* UltimateFeedbackApp */;
+			targetProxy = D451A8BD2D16526900587DAA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -583,6 +652,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.emiyaconsulting.UltimateFeedbackAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -606,6 +679,64 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.emiyaconsulting.UltimateFeedbackAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UltimateFeedbackApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UltimateFeedbackApp";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D451A8BF2D16526900587DAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 47E3RRLYKE;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiyaconsulting.UltimateFeedbackAppPerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UltimateFeedbackApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UltimateFeedbackApp";
+			};
+			name = Debug;
+		};
+		D451A8C02D16526900587DAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 47E3RRLYKE;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiyaconsulting.UltimateFeedbackAppPerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -640,6 +771,15 @@
 			buildConfigurations = (
 				D41E62622D07724E0053AD82 /* Debug */,
 				D41E62632D07724E0053AD82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D451A8C12D16526900587DAA /* Build configuration list for PBXNativeTarget "UltimateFeedbackAppPerformanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D451A8BF2D16526900587DAA /* Debug */,
+				D451A8C02D16526900587DAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
