@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "E6942152-4199-4BE3-A37C-EEC6DD83C231",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:UltimateFeedbackApp.xcodeproj",
+        "identifier" : "D483F6722D1DFB8600212AED",
+        "name" : "UltimateFeedbackAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

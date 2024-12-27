@@ -4,4 +4,7 @@
    <FileRef
       location = "container:UltimateFeedbackApp.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:UltimateFeedbackAppUITests.xctestplan">
+   </FileRef>
 </Workspace>

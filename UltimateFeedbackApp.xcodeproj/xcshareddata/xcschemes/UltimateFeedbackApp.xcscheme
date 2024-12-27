@@ -60,6 +60,17 @@
                ReferencedContainer = "container:UltimateFeedbackApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D483F6722D1DFB8600212AED"
+               BuildableName = "UltimateFeedbackAppUITests.xctest"
+               BlueprintName = "UltimateFeedbackAppUITests"
+               ReferencedContainer = "container:UltimateFeedbackApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import SwiftUI
 
 enum SortType: String {
     case dateCreated = "creationDate"
@@ -23,7 +24,7 @@ enum Status {
 
 /// An environment singleton responsible for managing the Core Data stack, including
 /// counting fetch requests, tracking awards, and dealing with sample data.
-class DataController : ObservableObject {
+class DataController: ObservableObject {
     /// The lone CloudKit container used to store all data.
     let container: NSPersistentCloudKitContainer
     @Published var selectedFilter: Filter? = Filter.all
@@ -98,18 +99,26 @@ class DataController : ObservableObject {
         // the system to call the remoteStoreChanged() method when a change happens.
         container.persistentStoreDescriptions
             .first?
-            .setOption(true as NSNumber,
-                       forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange,
-                                               object: container.persistentStoreCoordinator,
-                                               queue: .main, using: remoteStoreChanged)
+            .setOption(
+                true as NSNumber,
+                forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        NotificationCenter.default.addObserver(
+            forName: .NSPersistentStoreRemoteChange,
+            object: container.persistentStoreCoordinator,
+            queue: .main, using: remoteStoreChanged)
 
         // If in-mem is false, load the underlying DB onto disk or bail out if there's a failure.
-        container.loadPersistentStores { storeDescription, error in
+        container.loadPersistentStores { _, error in
             if let error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
-            print(storeDescription)
+
+            #if DEBUG
+                if CommandLine.arguments.contains("enable-testing") {
+                    self.deleteAll()
+                    UIView.setAnimationsEnabled(false)
+                }
+            #endif
         }
     }
 
@@ -142,7 +151,7 @@ class DataController : ObservableObject {
         dataController.createSampleData()
         return dataController
     }()
-    
+
     /// Saves the Core Data context if and only if there are changes. This silently ignores any errors
     /// caused by saving, however this should be fine because all attributes (filter, issue) are optionals.
     func save() {
@@ -162,11 +171,13 @@ class DataController : ObservableObject {
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         batchDeleteRequest.resultType = .resultTypeObjectIDs
 
-        if let delete = try? container.viewContext.execute(batchDeleteRequest) as?
-            NSBatchDeleteResult {
+        if let delete = try? container.viewContext.execute(batchDeleteRequest)
+            as? NSBatchDeleteResult
+        {
             let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
-            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes,
-                                                into: [container.viewContext])
+            NSManagedObjectContext.mergeChanges(
+                fromRemoteContextSave: changes,
+                into: [container.viewContext])
         }
     }
 
@@ -239,7 +250,7 @@ class DataController : ObservableObject {
             save()
         }
     }
-    
+
     /// Runs a fetch request with various predicates that filter the user's issues based on tag, title and
     /// content text, search tokens, priority, and completion status.
     /// - Returns: An array of all matching issues.
@@ -254,8 +265,9 @@ class DataController : ObservableObject {
             predicates.append(tagPredicate)
         } else {
             // modificationDate is greater than the earliest (min) modification date
-            let datePredicate = NSPredicate(format: "modificationDate > %@",
-                                            filter.minModificationDate as NSDate)
+            let datePredicate = NSPredicate(
+                format: "modificationDate > %@",
+                filter.minModificationDate as NSDate)
             predicates.append(datePredicate)
         }
 
@@ -266,7 +278,9 @@ class DataController : ObservableObject {
             let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
             let contentPredicate = NSPredicate(format: "content CONTAINS[c] %@", trimmedFilterText)
             let combinedPredicate =
-            NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
+                NSCompoundPredicate(orPredicateWithSubpredicates: [
+                    titlePredicate, contentPredicate,
+                ])
             predicates.append(combinedPredicate)
         }
 
@@ -289,16 +303,20 @@ class DataController : ObservableObject {
 
             if filterStatus != .all {
                 let lookForClosed = filterStatus == .closed
-                let statusFilter = NSPredicate(format: "completed = %@",
-                                               NSNumber(value: lookForClosed))
+                let statusFilter = NSPredicate(
+                    format: "completed = %@",
+                    NSNumber(value: lookForClosed))
                 predicates.append(statusFilter)
             }
         }
 
         let request = Issue.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue,
-                                                    ascending: sortNewestFirst)]
+        request.sortDescriptors = [
+            NSSortDescriptor(
+                key: sortType.rawValue,
+                ascending: sortNewestFirst)
+        ]
 
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         return allIssues
