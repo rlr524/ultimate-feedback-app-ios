@@ -23,7 +23,7 @@ struct UltimateFeedbackAppApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationSplitView {
-                SidebarView()
+                SidebarView(dc: dataController)
             } content: {
                 ContentView()
             } detail: {
