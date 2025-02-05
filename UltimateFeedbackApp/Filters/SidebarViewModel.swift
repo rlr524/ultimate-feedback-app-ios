@@ -7,18 +7,22 @@
 
 import Foundation
 import CoreData
-import SwiftUI
 
 extension SidebarView {
-    class ViewModel: ObservableObject {
+    class ViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
         var dc: DataController
         @Published var tagToRename: Tag?
         @Published var renamingTag = false
         @Published var tagName = ""
         @Published var showingAwards = false
-        // The FetchRequest prop wrapper ensures SwiftUI updates
-        // the tag list automatically as tags are added or removed
-        @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
+        // The fetched results controller is private because it's an implementation detail.
+        private let tagsController: NSFetchedResultsController<Tag>
+        // The tags property being a simple array of Tags objects works great because it isolates
+        // the use of CoreData to the viewmodel; CoreData could be removed entirely and the view
+        // wouldn't know any different. It's marked as @Published so whenever the array is changed
+        // it notifies any observing views.
+        @Published var tags = [Tag]()
+
         var tagFilters: [Filter] {
             tags.map { tag in
                 Filter(id: tag.tagID, name: tag.tagName, icon: "tag", tag: tag)
@@ -27,6 +31,32 @@ extension SidebarView {
 
         init(dc: DataController) {
             self.dc = dc
+            let request = Tag.fetchRequest()
+            request.sortDescriptors = [NSSortDescriptor(keyPath: \Tag.name, ascending: true)]
+
+            tagsController = NSFetchedResultsController(
+                fetchRequest: request,
+                managedObjectContext: dc.container.viewContext,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
+
+            super.init()
+            tagsController.delegate = self
+
+            do {
+                try tagsController.performFetch()
+                tags = tagsController.fetchedObjects ?? []
+            } catch {
+                print("Failed to fetch tags")
+            }
+        }
+
+        func controllerDidChangeContent(_ controller:
+                                        NSFetchedResultsController<NSFetchRequestResult>) {
+            if let newTags = controller.fetchedObjects as? [Tag] {
+                tags = newTags
+            }
         }
 
         func delete(_ offsets: IndexSet) {
