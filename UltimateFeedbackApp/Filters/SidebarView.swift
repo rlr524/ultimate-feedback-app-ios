@@ -43,5 +43,5 @@ struct SidebarView: View {
 }
 
 #Preview {
-    SidebarView(dc: DataController.preview)
+    SidebarView(dc: .preview)
 }

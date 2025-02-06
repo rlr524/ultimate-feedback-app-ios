@@ -25,7 +25,7 @@ struct UltimateFeedbackAppApp: App {
             NavigationSplitView {
                 SidebarView(dc: dataController)
             } content: {
-                ContentView()
+                ContentView(dc: dataController)
             } detail: {
                 DetailView()
             }

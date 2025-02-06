@@ -8,32 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var dc: DataController
+    @StateObject private var vm: ViewModel
+
+    init(dc: DataController) {
+        let vm = ViewModel(dc: dc)
+        _vm = StateObject(wrappedValue: vm)
+    }
 
     var body: some View {
-        List(selection: $dc.selectedIssue) {
-            ForEach(dc.issuesForSelectedFilter()) { issue in
+        List(selection: $vm.dc.selectedIssue) {
+            ForEach(vm.dc.issuesForSelectedFilter()) { issue in
                 IssueRow(issue: issue)
             }
-            .onDelete(perform: delete)
+            .onDelete(perform: vm.delete)
         }
         .navigationTitle("Issues")
-        .searchable(text: $dc.filterText, tokens: $dc.filterTokens,
-                    suggestedTokens: .constant(dc.suggestedFilterTokens),
+        .searchable(text: $vm.dc.filterText, tokens: $vm.dc.filterTokens,
+                    suggestedTokens: .constant(vm.dc.suggestedFilterTokens),
                     prompt: "Filter issues, or type # to add tags") { tag in Text(tag.tagName) }
             .toolbar(content: ContentViewToolbar.init)
     }
 
-    func delete(_ offsets: IndexSet) {
-        let issues = dc.issuesForSelectedFilter()
 
-        for offset in offsets {
-            let item = issues[offset]
-            dc.delete(item)
-        }
-    }
 }
 
 #Preview {
-    ContentView()
+    ContentView(dc: .preview)
 }
