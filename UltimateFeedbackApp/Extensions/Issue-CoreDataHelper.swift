@@ -8,13 +8,14 @@
 import Foundation
 
 extension Issue: Comparable {
+
     // swiftlint:disable:next operator_whitespace
     public static func <(lhs: Issue, rhs: Issue) -> Bool {
         let left = lhs.issueTitle.localizedLowercase
         let right = rhs.issueTitle.localizedLowercase
 
         if left == right {
-            return lhs.issueCreationDate < rhs.issueCreationDate
+            return lhs.creationDate ?? Date.now < rhs.creationDate ?? Date.now - 1
         } else {
             return left < right
         }
@@ -28,10 +29,6 @@ extension Issue: Comparable {
     var issueContent: String {
         get { content ?? "" }
         set { content = newValue }
-    }
-
-    var issueCreationDate: Date {
-        creationDate ?? .now
     }
 
     var issueModificationDate: Date {
@@ -58,17 +55,19 @@ extension Issue: Comparable {
 
     var issueStatus: String {
         if completed {
-            return "Closed"
+            return NSLocalizedString("Closed", comment: "This issue has been resolved by the user.")
         } else {
-            return "Open"
+            return NSLocalizedString("Open", comment: "This issue is currently unresolved.")
         }
     }
 
     var issueTagsList: String {
-        guard let tags else { return "No tags"}
+        let noTags = NSLocalizedString("No tags", comment: "This user has not created any tags.")
+
+        guard let tags else { return noTags }
 
         if tags.count == 0 {
-            return "No tags"
+            return noTags
         } else {
             return issueTags.map(\.tagName).formatted()
         }

@@ -16,17 +16,17 @@ struct ContentView: View {
     }
 
     var body: some View {
-        List(selection: $vm.dc.selectedIssue) {
+        List(selection: $vm.selectedIssue) {
             ForEach(vm.dc.issuesForSelectedFilter()) { issue in
-                IssueRow(issue: issue)
+                IssueRowView(issue: issue)
             }
             .onDelete(perform: vm.delete)
         }
         .navigationTitle("Issues")
-        .searchable(text: $vm.dc.filterText, tokens: $vm.dc.filterTokens,
-                    suggestedTokens: .constant(vm.dc.suggestedFilterTokens),
+        .searchable(text: $vm.filterText, tokens: $vm.filterTokens,
+                    suggestedTokens: .constant(vm.suggestedFilterTokens),
                     prompt: "Filter issues, or type # to add tags") { tag in Text(tag.tagName) }
-            .toolbar(content: ContentViewToolbar.init)
+            .toolbar(content: ContentViewToolbarView.init)
     }
 
 

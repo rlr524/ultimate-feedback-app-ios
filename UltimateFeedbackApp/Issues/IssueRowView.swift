@@ -7,35 +7,40 @@
 
 import SwiftUI
 
-struct IssueRow: View {
+struct IssueRowView: View {
     @EnvironmentObject var dataController: DataController
-    @ObservedObject var issue: Issue
+    @StateObject var vm: ViewModel
+
+    init(issue: Issue) {
+        let vm = ViewModel(issue: issue)
+        _vm = StateObject(wrappedValue: vm)
+    }
 
     var body: some View {
-        NavigationLink(value: issue) {
+        NavigationLink(value: vm.issue) {
             HStack {
                 Image(systemName: "exclamationmark.circle")
                     .imageScale(.large)
-                    .opacity(issue.priority == 2 ? 1 : 0)
-                    .accessibilityIdentifier(issue.priority == 2 ? "\(issue.issueTitle) High Priority" : "")
+                    .opacity(vm.iconOpacity)
+                    .accessibilityIdentifier(vm.iconIdentifier)
 
                 VStack(alignment: .leading) {
-                    Text(issue.issueTitle)
+                    Text(vm.issue.issueTitle)
                         .font(.headline)
                         .lineLimit(1)
 
-                    Text(issue.issueTagsList)
+                    Text(vm.issue.issueTagsList)
                         .foregroundStyle(.secondary)
-                        .lineLimit(2...2)
+                        .lineLimit(2)
                 }
                 Spacer()
 
                 VStack(alignment: .trailing) {
-                    Text(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
-                        .accessibilityLabel(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
+                    Text(vm.creationDate.formatted())
+                        .accessibilityLabel(vm.accessiblityCreationDate)
                         .font(.subheadline)
 
-                    if issue.completed {
+                    if vm.issue.completed {
                         Text("CLOSED")
                             .font(.body.smallCaps())
                     }
@@ -43,11 +48,11 @@ struct IssueRow: View {
                 .foregroundStyle(.secondary)
             }
         }
-        .accessibilityHint(issue.priority == 2 ? "High Priority" : "")
-        .accessibilityIdentifier(issue.issueTitle)
+        .accessibilityHint(vm.accessibilityHint)
+        .accessibilityIdentifier(vm.issueTitle)
     }
 }
 
 #Preview {
-    IssueRow(issue: .example)
+    IssueRowView(issue: Issue.example)
 }

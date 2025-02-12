@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "**Modified:** %@" : {
 
     },
@@ -38,16 +35,37 @@
 
     },
     "Cancel" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取り消す"
+          }
+        }
+      }
     },
     "Close Issue" : {
 
     },
     "Closed" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非公開"
+          }
+        }
+      }
     },
     "CLOSED" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非公開"
+          }
+        }
+      }
     },
     "Copy Issue Title" : {
 
@@ -83,9 +101,6 @@
       "extractionState" : "manual"
     },
     "High" : {
-
-    },
-    "High Priority" : {
 
     },
     "Issues" : {

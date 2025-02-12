@@ -6,11 +6,21 @@
 //
 
 import Foundation
-import CoreData
 
 extension ContentView {
+    @dynamicMemberLookup
     class ViewModel: ObservableObject {
         var dc: DataController
+
+        subscript<Value>(dynamicMember keyPath: KeyPath<DataController, Value>) -> Value {
+            dc[keyPath: keyPath]
+        }
+
+        subscript<Value>(dynamicMember keyPath:
+                         ReferenceWritableKeyPath<DataController, Value>) -> Value {
+            get { dc[keyPath: keyPath] }
+            set { dc[keyPath: keyPath] = newValue }
+        }
 
         init(dc: DataController) {
             self.dc = dc

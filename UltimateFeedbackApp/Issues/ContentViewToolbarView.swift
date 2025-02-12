@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentViewToolbar: View {
+struct ContentViewToolbarView: View {
     @EnvironmentObject var dc: DataController
 
     var body: some View {
@@ -58,5 +58,5 @@ struct ContentViewToolbar: View {
 }
 
 #Preview {
-    ContentViewToolbar()
+    ContentViewToolbarView()
 }
