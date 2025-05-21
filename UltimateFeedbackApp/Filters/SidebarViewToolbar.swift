@@ -14,14 +14,14 @@ struct SidebarViewToolbar: View {
     @Binding var showingAwards: Bool
 
     var body: some View {
-#if DEBUG
-        Button {
-            dc.deleteAll()
-            dc.createSampleData()
-        } label: {
-            Label("ADD SAMPLES", systemImage: "flame")
-        }
-#endif
+        #if DEBUG
+            Button {
+                dc.deleteAll()
+                dc.createSampleData()
+            } label: {
+                Label("ADD SAMPLES", systemImage: "flame")
+            }
+        #endif
 
         Button(action: dc.newTag) {
             Label("Add tag", systemImage: "plus")

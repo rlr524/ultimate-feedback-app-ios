@@ -26,10 +26,8 @@ struct ContentView: View {
         .searchable(text: $vm.filterText, tokens: $vm.filterTokens,
                     suggestedTokens: .constant(vm.suggestedFilterTokens),
                     prompt: "Filter issues, or type # to add tags") { tag in Text(tag.tagName) }
-            .toolbar(content: ContentViewToolbarView.init)
+        .toolbar(content: ContentViewToolbarView.init)
     }
-
-
 }
 
 #Preview {

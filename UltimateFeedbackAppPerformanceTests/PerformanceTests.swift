@@ -5,13 +5,13 @@
 //  Created by Rob Ranf on 12/20/24.
 //
 
-import XCTest
 @testable import UltimateFeedbackApp
+import XCTest
 
 final class PerformanceTests: BaseTestCase {
     func testAwardCalculationPerformance() {
         // Create a significant amount of test data
-        for _ in 1...1000 {
+        for _ in 1 ... 1000 {
             dc.createSampleData()
         }
 

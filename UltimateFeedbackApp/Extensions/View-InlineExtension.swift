@@ -9,10 +9,10 @@ import SwiftUI
 
 extension View {
     func inlineNavigationBar() -> some View {
-#if os(iOS)
-        self.navigationBarTitleDisplayMode(.inline)
-#else
-        self
-#endif
+        #if os(iOS)
+            navigationBarTitleDisplayMode(.inline)
+        #else
+            self
+        #endif
     }
 }

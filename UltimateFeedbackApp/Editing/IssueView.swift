@@ -17,7 +17,7 @@ struct IssueView: View {
                 VStack(alignment: .leading) {
                     TextField("Title", text: $issue.issueTitle,
                               prompt: Text("Enter the issue title here"))
-                    .font(.title)
+                        .font(.title)
 
                     // Use markdown **text** to style (bold in this case) the text inside a string
                     // but not apply the style to the entire string as would happen with a modifier. If

@@ -14,6 +14,7 @@ struct AwardsView: View {
     var columns: [GridItem] {
         [GridItem(.adaptive(minimum: 100, maximum: 100))]
     }
+
     var awardTitle: LocalizedStringKey {
         if dc.hasEarned(award: selectedAward) {
             return "Unlocked: \(selectedAward.name)"
@@ -45,8 +46,7 @@ struct AwardsView: View {
             }
             .navigationTitle("Awards")
         }
-        .alert(awardTitle, isPresented: $showingAwardDetails) {
-        } message: {
+        .alert(awardTitle, isPresented: $showingAwardDetails) {} message: {
             Text(selectedAward.description)
         }
     }

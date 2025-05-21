@@ -6,18 +6,18 @@
 //
 
 import CoreData
-import XCTest
 @testable import UltimateFeedbackApp
+import XCTest
 
 final class TagTests: BaseTestCase {
     func testCreatingTagsAndIssues() {
         let count = 10
         let issueCount = count * count
 
-        for _ in 0..<count {
+        for _ in 0 ..< count {
             let tag = Tag(context: moc)
 
-            for _ in 0..<count {
+            for _ in 0 ..< count {
                 let issue = Issue(context: moc)
                 tag.addToIssues(issue)
             }

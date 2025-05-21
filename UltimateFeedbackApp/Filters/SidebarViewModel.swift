@@ -5,8 +5,8 @@
 //  Created by Rob Ranf on 1/21/25.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 extension SidebarView {
     class ViewModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
@@ -53,7 +53,8 @@ extension SidebarView {
         }
 
         func controllerDidChangeContent(_ controller:
-                                        NSFetchedResultsController<NSFetchRequestResult>) {
+            NSFetchedResultsController<NSFetchRequestResult>)
+        {
             if let newTags = controller.fetchedObjects as? [Tag] {
                 tags = newTags
             }
@@ -82,6 +83,5 @@ extension SidebarView {
             dc.delete(tag)
             dc.save()
         }
-
     }
 }

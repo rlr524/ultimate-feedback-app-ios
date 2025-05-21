@@ -48,6 +48,7 @@
 
     },
     "Closed" : {
+      "comment" : "This issue has been resolved by the user.",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -133,6 +134,9 @@
     "No Issue Selected" : {
 
     },
+    "No tags" : {
+      "comment" : "This user has not created any tags."
+    },
     "OK" : {
 
     },
@@ -140,7 +144,7 @@
 
     },
     "Open" : {
-
+      "comment" : "This issue is currently unresolved."
     },
     "Priority" : {
 

@@ -9,7 +9,7 @@ import Foundation
 
 extension Tag: Comparable {
     // swiftlint:disable:next operator_whitespace
-    public static func <(lhs: Tag, rhs: Tag) -> Bool {
+    public static func < (lhs: Tag, rhs: Tag) -> Bool {
         let left = lhs.tagName.localizedLowercase
         let right = rhs.tagName.localizedLowercase
 

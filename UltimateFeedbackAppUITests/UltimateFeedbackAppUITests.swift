@@ -13,7 +13,7 @@ extension XCUIElement {
     func clear() {
         // The XCUIElement has a 'value' property that can be any type at all, so
         // try casting it as a String here and if that fails, throw an error and bail out.
-        guard let stringValue = self.value as? String else {
+        guard let stringValue = value as? String else {
             XCTFail("Failed to clear text in XCUIElement.")
             return
         }
@@ -61,11 +61,11 @@ final class UltimateFeedbackAppUITests: XCTestCase {
     }
 
     func testNoIssuesAtStart() {
-        XCTAssertEqual(app.cells.count, 0,  "There should be no list rows initially")
+        XCTAssertEqual(app.cells.count, 0, "There should be no list rows initially")
     }
 
     func testCreatingAndDeletingIssues() {
-        for tapCount in 1...5 {
+        for tapCount in 1 ... 5 {
             app.buttons["New Issue"].tap()
             app.buttons["Issues"].tap()
 
@@ -73,7 +73,7 @@ final class UltimateFeedbackAppUITests: XCTestCase {
                            "There should be \(tapCount) rows in the list.")
         }
 
-        for tapCount in (0...4).reversed() {
+        for tapCount in (0 ... 4).reversed() {
             app.cells.firstMatch.swipeLeft()
             app.buttons["Delete"].tap()
 

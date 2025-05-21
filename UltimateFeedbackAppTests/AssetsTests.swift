@@ -5,8 +5,8 @@
 //  Created by Rob Ranf on 12/9/24.
 //
 
-import XCTest
 @testable import UltimateFeedbackApp
+import XCTest
 
 final class AssetsTests: BaseTestCase {
     func testColorsExist() {

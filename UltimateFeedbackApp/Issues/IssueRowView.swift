@@ -1,5 +1,5 @@
 //
-//  IssueRow.swift
+//  IssueRowView.swift
 //  UltimateFeedbackApp
 //
 //  Created by Rob Ranf on 3/22/24.

@@ -21,7 +21,7 @@ struct SidebarView: View {
             Section("Smart Filters") {
                 ForEach(smartFilters, content: SmartFilterRow.init)
             }
-            
+
             Section("Tags") {
                 ForEach(vm.tagFilters) { filter in
                     UserFilterRow(filter: filter, rename: vm.rename, delete: vm.delete)

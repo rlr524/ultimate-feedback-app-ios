@@ -101,11 +101,13 @@ class DataController: ObservableObject {
             .first?
             .setOption(
                 true as NSNumber,
-                forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+                forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
+            )
         NotificationCenter.default.addObserver(
             forName: .NSPersistentStoreRemoteChange,
             object: container.persistentStoreCoordinator,
-            queue: .main, using: remoteStoreChanged)
+            queue: .main, using: remoteStoreChanged
+        )
 
         // If in-mem is false, load the underlying DB onto disk or bail out if there's a failure.
         container.loadPersistentStores { _, error in
@@ -126,18 +128,18 @@ class DataController: ObservableObject {
         // viewContext is effectively a pool of data that has been loaded from disk or in-mem.
         let viewContext = container.viewContext
 
-        for i in 1...5 {
+        for i in 1 ... 5 {
             let tag = Tag(context: viewContext)
             tag.id = UUID()
             tag.name = "Tag \(i)"
 
-            for j in 1...10 {
+            for j in 1 ... 10 {
                 let issue = Issue(context: viewContext)
                 issue.title = "Issue \(i)-\(j)"
                 issue.content = "Issue description goes here"
                 issue.creationDate = .now
                 issue.completed = Bool.random()
-                issue.priority = Int16.random(in: 0...2)
+                issue.priority = Int16.random(in: 0 ... 2)
                 tag.addToIssues(issue)
             }
         }
@@ -177,7 +179,8 @@ class DataController: ObservableObject {
             let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
             NSManagedObjectContext.mergeChanges(
                 fromRemoteContextSave: changes,
-                into: [container.viewContext])
+                into: [container.viewContext]
+            )
         }
     }
 
@@ -191,7 +194,7 @@ class DataController: ObservableObject {
         save()
     }
 
-    func remoteStoreChanged(_ notification: Notification) {
+    func remoteStoreChanged(_: Notification) {
         objectWillChange.send()
     }
 
@@ -267,7 +270,8 @@ class DataController: ObservableObject {
             // modificationDate is greater than the earliest (min) modification date
             let datePredicate = NSPredicate(
                 format: "modificationDate > %@",
-                filter.minModificationDate as NSDate)
+                filter.minModificationDate as NSDate
+            )
             predicates.append(datePredicate)
         }
 
@@ -289,7 +293,6 @@ class DataController: ObservableObject {
                 let tokenPredicate = NSPredicate(format: "tags CONTAINS %@", filterToken)
                 predicates.append(tokenPredicate)
             }
-
         }
 
         if filterEnabled {
@@ -305,7 +308,8 @@ class DataController: ObservableObject {
                 let lookForClosed = filterStatus == .closed
                 let statusFilter = NSPredicate(
                     format: "completed = %@",
-                    NSNumber(value: lookForClosed))
+                    NSNumber(value: lookForClosed)
+                )
                 predicates.append(statusFilter)
             }
         }
@@ -315,7 +319,8 @@ class DataController: ObservableObject {
         request.sortDescriptors = [
             NSSortDescriptor(
                 key: sortType.rawValue,
-                ascending: sortNewestFirst)
+                ascending: sortNewestFirst
+            ),
         ]
 
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
@@ -368,7 +373,7 @@ class DataController: ObservableObject {
 
         default:
             // an unknown award criteria; this should never be allowed
-            //fatalError("Unknown award criteria: \(award.criteria)")
+            // fatalError("Unknown award criteria: \(award.criteria)")
             return false
         }
     }

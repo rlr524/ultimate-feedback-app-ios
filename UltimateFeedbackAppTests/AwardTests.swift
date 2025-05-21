@@ -5,9 +5,9 @@
 //  Created by Rob Ranf on 12/9/24.
 //
 
-import XCTest
 import CoreData
 @testable import UltimateFeedbackApp
+import XCTest
 
 final class AwardTests: BaseTestCase {
     let awards = Award.allAwards
@@ -30,7 +30,7 @@ final class AwardTests: BaseTestCase {
         for (idx, value) in values.enumerated() {
             var issues = [Issue]()
 
-            for _ in 0..<value {
+            for _ in 0 ..< value {
                 let issue = Issue(context: moc)
                 issues.append(issue)
             }
@@ -52,7 +52,7 @@ final class AwardTests: BaseTestCase {
         for (idx, value) in values.enumerated() {
             var issues = [Issue]()
 
-            for _ in 0..<value {
+            for _ in 0 ..< value {
                 let issue = Issue(context: moc)
                 issue.completed = true
                 issues.append(issue)

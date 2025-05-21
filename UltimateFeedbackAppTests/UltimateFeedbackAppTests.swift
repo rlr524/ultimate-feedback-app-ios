@@ -6,8 +6,8 @@
 //
 
 import CoreData
-import XCTest
 @testable import UltimateFeedbackApp
+import XCTest
 
 class BaseTestCase: XCTestCase {
     var dc: DataController!

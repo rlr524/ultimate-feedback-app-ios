@@ -5,9 +5,9 @@
 //  Created by Rob Ranf on 12/20/24.
 //
 
-import XCTest
 import CoreData
 @testable import UltimateFeedbackApp
+import XCTest
 
 class BaseTestCase: XCTestCase {
     var dc: DataController!

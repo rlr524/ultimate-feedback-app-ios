@@ -17,7 +17,8 @@ extension ContentView {
         }
 
         subscript<Value>(dynamicMember keyPath:
-                         ReferenceWritableKeyPath<DataController, Value>) -> Value {
+            ReferenceWritableKeyPath<DataController, Value>) -> Value
+        {
             get { dc[keyPath: keyPath] }
             set { dc[keyPath: keyPath] = newValue }
         }

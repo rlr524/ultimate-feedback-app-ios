@@ -5,9 +5,9 @@
 //  Created by Rob Ranf on 12/11/24.
 //
 
-import XCTest
 import CoreData
 @testable import UltimateFeedbackApp
+import XCTest
 
 final class DevelopmentTests: BaseTestCase {
     func testSampleDataCreation() {
